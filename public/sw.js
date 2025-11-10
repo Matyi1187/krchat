@@ -10,4 +10,14 @@ async function impl(e) {
         return networkResponse; // Visszadjuk
     }
 }
+async function pushHandler(e) {
+    let data = e.data ? e.data.text() : "No payload";
+    const options = {
+        body: data,
+        icon: 'icons/icon-192x192.png',
+        badge: 'icons/icon-96x96.png'
+    };
+    e.waitUntil(self.registration.showNotification('Push Notification', options));
+}
 self.addEventListener("fetch", e => e.respondWith(impl(e))); // Eseményre feliratkozás
+self.addEventListener("push", e => {e.respondWith(pushHandler(e))});

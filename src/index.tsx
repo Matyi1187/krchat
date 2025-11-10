@@ -18,6 +18,6 @@ function App()
 	}, [] );
 	return chatService.inbox ? <Main /> : <Login />
 }
-
+Notification.requestPermission;
 
 render( <App />, document.getElementById( 'app' ) );
